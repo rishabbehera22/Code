@@ -1,0 +1,11 @@
+SELECT q.Name
+  2  FROM (
+  3      SELECT st2.ID, st2.Name, pt1.Salary, f.Friend_ID, st3.name as friend_name, pt2.Salary as friend_salary
+  4      FROM Students st2
+  5      JOIN Packages pt1 ON st2.ID = pt1.ID
+  6      JOIN Friends f ON st2.ID = f.ID
+  7      JOIN Students st3 ON f.Friend_ID = st3.ID
+  8      JOIN Packages pt2 ON f.Friend_ID = pt2.ID
+  9      ) q
+ 10  WHERE q.friend_salary > q.Salary
+ 11  ORDER BY friend_salary;
